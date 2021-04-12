@@ -47,7 +47,7 @@ public class FileChooserLauncher extends BroadcastReceiver {
 
     if (acceptTypes.length == 0 || (acceptTypes.length == 1 && acceptTypes[0].length() == 0)) {
       // acceptTypes empty -> accept anything
-      imageAcceptable = false;
+      imageAcceptable = true;
       videoAcceptable = false;
     }
     else {
@@ -103,6 +103,7 @@ public class FileChooserLauncher extends BroadcastReceiver {
     Intent intent = new Intent(context, FileChooserActivity.class);
     intent.putExtra(EXTRA_TITLE, title);
     intent.putExtra(EXTRA_ACCEPT_TYPES, acceptTypes);
+    intent.putExtra(EXTRA_SHOW_IMAGE_OPTION, imageAcceptable && hasCameraPermission());
     intent.putExtra(EXTRA_ALLOW_MULTIPLE_FILES, allowMultipleFiles);
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
