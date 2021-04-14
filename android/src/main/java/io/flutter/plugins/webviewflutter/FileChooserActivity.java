@@ -48,7 +48,7 @@ public class FileChooserActivity extends Activity {
 
   private void showFileChooser(boolean showImageIntent, boolean showVideoIntent) {
     Intent getContentIntent = createGetContentIntent();
-    Intent captureImageIntent = showImageIntent ? createCaptureIntent(Intent.ACTION_PICK, "jpg") : null;
+    Intent captureImageIntent = showImageIntent ? createCaptureIntent(MediaStore.ACTION_IMAGE_CAPTURE, "jpg") : null;
     Intent captureVideoIntent = showVideoIntent ? createCaptureIntent(MediaStore.ACTION_VIDEO_CAPTURE, "mp4") : null;
 
     if (getContentIntent == null && captureImageIntent == null && captureVideoIntent == null) {
