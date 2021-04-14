@@ -48,7 +48,7 @@ public class FileChooserActivity extends Activity {
 
   private void showFileChooser(boolean showImageIntent, boolean showVideoIntent) {
     Intent getContentIntent = createGetContentIntent();
-    Intent captureImageIntent = showImageIntent ? createCaptureIntent(MediaStore.ACTION_IMAGE_CAPTURE, "jpg") : null;
+    Intent captureImageIntent = showImageIntent ? createCaptureIntent(Intent.ACTION_GET_CONTENT, "jpg") : null;
     Intent captureVideoIntent = showVideoIntent ? createCaptureIntent(MediaStore.ACTION_VIDEO_CAPTURE, "mp4") : null;
 
     if (getContentIntent == null && captureImageIntent == null && captureVideoIntent == null) {
@@ -107,6 +107,7 @@ public class FileChooserActivity extends Activity {
 
   private Intent createCaptureIntent(String type, String fileFormat) {
     Intent captureIntent = new Intent(type);
+    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
     if (captureIntent.resolveActivity(getPackageManager()) == null) {
       return null;
     }
